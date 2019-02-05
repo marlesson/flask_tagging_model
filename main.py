@@ -20,11 +20,11 @@ def predict():
     except ValueError:
         return jsonify("Please enter a json.")
 
-    input_df = pd.DataFrame(data)
-    print(input_df)
+    input_df = pd.DataFrame(data['values'])
+
     return jsonify(model.predict(input_df).tolist()) #jsonify(lin_reg.predict(years_of_experience).tolist())
 
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 5000))
     init()
-    app.run(host='0.0.0.0', port=port, debug=True)
+    app.run(host='0.0.0.0', port=port, debug=False)
