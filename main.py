@@ -5,7 +5,9 @@ from mlflow.utils import get_jsonable_obj
 import pandas as pd
 
 app      = Flask(__name__)
+
 model    = load_pyfunc("model")
+
 features = ["fixed acidity","volatile acidity",
             "citric acid","residual sugar","chlorides",
             "free sulfur dioxide", "total sulfur dioxide",
@@ -26,5 +28,5 @@ def predict():
     return jsonify({"predictions": predictions})
 
 if __name__ == "__main__":
-    port = int(os.environ.get("PORT", 5000))
+    port = int(os.environ.get("PORT", 80))
     app.run(host='0.0.0.0', port=port, debug=False)
