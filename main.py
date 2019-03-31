@@ -27,9 +27,9 @@ def predict():
 
     return jsonify({"predictions": predictions})
 
-@app.route("/owner", methods=['get'])
+@app.route("/", methods=['get'])
 def owner():
-    return OWNER
+    return jsonify({"App": "FASAM - Turma 2", "Owner": OWNER})
 
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 3000))
