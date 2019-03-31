@@ -1,7 +1,5 @@
 import os
 from flask import Flask, jsonify, request
-from mlflow.pyfunc import load_pyfunc
-from mlflow.utils import get_jsonable_obj
 import pandas as pd
 from joblib import dump, load
 
@@ -10,9 +8,6 @@ MODEL    = load('model/model.joblib')  #
 
 # Proprietário da API
 OWNER    = 'Quem sou eu?'
-
-# Feature vinda da API para usar no modelo
-FEATURES = 'texto'
 
 app      = Flask(__name__)
 
@@ -28,7 +23,7 @@ def predict():
         return jsonify("Please enter a json.")
 
     # Predict no modelo
-    predictions = MODEL.predict(df_input[FEATURES]).tolist()
+    predictions = MODEL.predict(df_input['texto']).tolist()
 
     return jsonify({"predictions": predictions})
 
