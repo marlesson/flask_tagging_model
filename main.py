@@ -11,10 +11,11 @@ OWNER    = 'Quem sou eu?'
 
 app      = Flask(__name__)
 
+# POST /predict 
+#
 @app.route("/predict", methods=['POST'])
 def predict():
   if request.method == 'POST':
-
     # Get Data
     try:
         data     = request.get_json()
@@ -27,6 +28,8 @@ def predict():
 
     return jsonify({"predictions": predictions})
 
+# GET /
+#
 @app.route("/", methods=['get'])
 def owner():
     return jsonify({"App": "FASAM - Turma 2", "Owner": OWNER})
